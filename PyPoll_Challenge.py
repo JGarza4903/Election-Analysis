@@ -2,9 +2,11 @@
 """PyPoll Homework Challenge Solution."""
 
 # Add our dependencies.
+#my computer said I needed to add this module to write to a file...
 from asyncore import write
 import csv
 import os
+#computer added this one for some reason...
 from platform import python_branch
 
 # Add a variable to load a file from a path.
@@ -106,10 +108,10 @@ with open(file_to_save, "w") as txt_file:
         county_percentage = vote_count / total_votes * 100 
 
          # 6d: Print the county results to the terminal.
-        county_results=(f"{counties}: {county_percentage:.1f}% of {total_votes}")
-        print(f"{county_results}")
+        county_results=(f"{counties}: {county_percentage:.1f}% of ({total_votes:,})\n")
+        print(county_results)
          # 6e: Save the county votes to a text file.
-        #txt_file.write(county_results)
+        txt_file.write(county_results)
 
          # 6f: Write an if statement to determine the winning county and get its vote count.
         if vote_count > winning_count and county_percentage > winning_percentage:
@@ -118,25 +120,27 @@ with open(file_to_save, "w") as txt_file:
             winning_county= counties
 
     # 7: Print the county with the largest turnout to the terminal.
-    largest_county=winning_county
-    print(
+    largest_county= print(
         f"-----------------------------\n"
-        f"Largest County Turnover {largest_county}\n"
+        f"Largest County Turnover: {winning_county}\n"
         f"-----------------------------")
     # 8: Save the county with the largest turnout to a text file.
-    txt_file.write(largest_county)
+    txt_file.write(str(largest_county))
 
     # Save the final candidate vote count to the text file.
     for candidate_name in candidate_votes:
 
         # Retrieve vote count and percentage
         votes = candidate_votes.get(candidate_name)
-        vote_percentage = float(votes) / float(total_votes) * 100
-        candidate_results = (f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+        vote_percentage = votes / total_votes * 100
+
+        candidate_results = (
+            f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
 
         # Print each candidate's voter count and percentage to the
         # terminal.
         print(candidate_results)
+            
         #  Save the candidate results to our text file.
         txt_file.write(candidate_results)
 
