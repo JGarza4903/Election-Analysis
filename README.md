@@ -1,6 +1,6 @@
 # Election-Analysis
 
-##Project Overview
+## Project Overview
 A Colorado Boad of Elections has given the task of retrieving data from a congressional election that was recently held. 
 
 1. Calculate the total amount of votes
